@@ -1,0 +1,927 @@
+/* ==========================================================================
+   Busan Convenience Store Map - Modern Responsive Stylesheet
+   ========================================================================== */
+
+:root {
+  --primary: #1e293b;
+  --primary-light: #334155;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --border: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+
+  /* Brand Signature Colors */
+  --brand-cu: #652d90;
+  --brand-gs25: #007bc3;
+  --brand-seven11: #ee7202;
+  --brand-emart24: #f59e0b;
+  --brand-other: #64748b;
+
+  --sidebar-width: 380px;
+  --header-height: 64px;
+  --filter-height: 52px;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-main);
+  overflow: hidden;
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* App Container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+/* ==========================================================================
+   1. Navbar Header
+   ========================================================================== */
+.navbar {
+  height: var(--header-height);
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+  gap: 16px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.navbar-brand .brand-icon {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.navbar-brand h1 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.2;
+}
+
+.navbar-brand .badge-tag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: #eff6ff;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.navbar-search {
+  flex: 1;
+  max-width: 480px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search-input-wrapper .search-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.search-input-wrapper input {
+  width: 100%;
+  height: 42px;
+  padding: 0 38px 0 40px;
+  font-size: 0.92rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: #f1f5f9;
+  color: var(--text-main);
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.search-input-wrapper input:focus {
+  background: #ffffff;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.search-input-wrapper .clear-btn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--text-light);
+  cursor: pointer;
+  display: none;
+  line-height: 1;
+}
+
+.search-input-wrapper .clear-btn.active {
+  display: block;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 14px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.action-btn:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+/* ==========================================================================
+   2. Filter Bar
+   ========================================================================== */
+.filter-bar {
+  height: var(--filter-height);
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 12px;
+  z-index: 999;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.district-select-box select {
+  height: 36px;
+  padding: 0 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  outline: none;
+  cursor: pointer;
+}
+
+.district-select-box select:focus {
+  border-color: var(--accent);
+}
+
+.brand-chips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.chip:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.chip.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  font-weight: 600;
+}
+
+.chip .chip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot-all { background: #94a3b8; }
+.dot-cu { background: var(--brand-cu); }
+.dot-gs25 { background: var(--brand-gs25); }
+.dot-seven11 { background: var(--brand-seven11); }
+.dot-emart24 { background: var(--brand-emart24); }
+.dot-other { background: var(--brand-other); }
+
+.chip .chip-count {
+  font-size: 0.76rem;
+  opacity: 0.85;
+}
+
+.chip.active .chip-count {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+}
+
+.reset-btn {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.reset-btn:hover {
+  background: #f1f5f9;
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   3. Main Workspace Layout
+   ========================================================================== */
+.main-content {
+  flex: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sidebar (Desktop) */
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100%;
+  background: #ffffff;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 500;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-sm);
+}
+
+.sidebar.collapsed {
+  transform: translateX(-100%);
+}
+
+.sidebar-header {
+  padding: 14px 18px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.result-summary {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.result-summary strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.sidebar-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-toggle-btn:hover {
+  background: #f1f5f9;
+  color: var(--text-main);
+}
+
+.store-list-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Store Card Item */
+.store-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.store-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.store-card.active {
+  border-color: var(--accent);
+  background: #f8fafc;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.brand-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  color: #ffffff;
+}
+
+.brand-badge.CU { background-color: var(--brand-cu); }
+.brand-badge.GS25 { background-color: var(--brand-gs25); }
+.brand-badge.SEVEN11 { background-color: var(--brand-seven11); }
+.brand-badge.EMART24 { background-color: var(--brand-emart24); color: #1e293b; }
+.brand-badge.OTHER { background-color: var(--brand-other); }
+
+.gu-dong-badge {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.store-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.store-title .branch-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.store-addr {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.nav-link-btn {
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: #f1f5f9;
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.15s ease;
+}
+
+.nav-link-btn:hover {
+  background: #e2e8f0;
+}
+
+/* ==========================================================================
+   4. Map Wrapper & Custom Elements
+   ========================================================================== */
+.map-wrapper {
+  flex: 1;
+  height: 100%;
+  position: relative;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.map-floating-controls {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 800;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.float-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  color: var(--text-main);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.float-btn:hover {
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+
+.map-legend {
+  position: absolute;
+  bottom: 24px;
+  right: 16px;
+  z-index: 800;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legend-color.cu { background: var(--brand-cu); }
+.legend-color.gs25 { background: var(--brand-gs25); }
+.legend-color.seven11 { background: var(--brand-seven11); }
+.legend-color.emart24 { background: var(--brand-emart24); }
+.legend-color.other { background: var(--brand-other); }
+
+/* ==========================================================================
+   5. Custom Leaflet Marker Pins & Popups
+   ========================================================================== */
+.custom-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  border: 2px solid #ffffff;
+  transition: transform 0.2s ease;
+}
+
+.custom-pin:hover {
+  transform: rotate(-45deg) scale(1.15);
+}
+
+.custom-pin span {
+  transform: rotate(45deg);
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+.pin-cu { background-color: var(--brand-cu); }
+.pin-gs25 { background-color: var(--brand-gs25); }
+.pin-seven11 { background-color: var(--brand-seven11); }
+.pin-emart24 { background-color: var(--brand-emart24); }
+.pin-emart24 span { color: #1e293b; }
+.pin-other { background-color: var(--brand-other); }
+
+/* Leaflet Popup Styling */
+.leaflet-popup-content-wrapper {
+  border-radius: var(--radius-lg);
+  padding: 0;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  line-height: 1.5;
+  min-width: 240px;
+}
+
+.popup-container {
+  padding: 16px;
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.popup-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.popup-addr {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.popup-links {
+  display: flex;
+  gap: 8px;
+}
+
+.popup-btn {
+  flex: 1;
+  text-align: center;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.popup-btn.kakao {
+  background-color: #fee500;
+  color: #191919;
+}
+
+.popup-btn.naver {
+  background-color: #03c75a;
+  color: #ffffff;
+}
+
+.popup-btn:hover {
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   6. Mobile Bottom Sheet
+   ========================================================================== */
+.bottom-sheet {
+  display: none;
+}
+
+/* ==========================================================================
+   7. Statistics Modal
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-card {
+  width: 90%;
+  max-width: 480px;
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  animation: modalIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.stats-total-box {
+  background: #f1f5f9;
+  border-radius: var(--radius-md);
+  padding: 16px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.total-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.total-number {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.stats-section-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+.stats-brand-row, .stats-district-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 0.88rem;
+}
+
+.stats-bar-wrapper {
+  flex: 1;
+  height: 8px;
+  background: #f1f5f9;
+  border-radius: 4px;
+  margin: 0 12px;
+  overflow: hidden;
+}
+
+.stats-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease-out;
+}
+
+/* ==========================================================================
+   8. Responsive Media Queries (Mobile & Tablet)
+   ========================================================================== */
+@media (max-width: 900px) {
+  :root {
+    --sidebar-width: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 12px;
+    height: 56px;
+    gap: 8px;
+  }
+
+  .navbar-brand h1 {
+    display: none;
+  }
+
+  .navbar-brand .badge-tag {
+    display: none;
+  }
+
+  .navbar-search {
+    max-width: none;
+  }
+
+  .search-input-wrapper input {
+    height: 38px;
+    font-size: 0.88rem;
+  }
+
+  .action-btn .btn-label {
+    display: none;
+  }
+
+  .action-btn {
+    padding: 0 10px;
+  }
+
+  .filter-bar {
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  /* Hide Desktop Sidebar on Mobile */
+  .sidebar {
+    display: none;
+  }
+
+  .map-legend {
+    display: none;
+  }
+
+  /* Show Bottom Sheet on Mobile */
+  .bottom-sheet {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(calc(100% - 64px));
+  }
+
+  .bottom-sheet.state-collapsed {
+    transform: translateY(calc(100% - 64px));
+  }
+
+  .bottom-sheet.state-half {
+    transform: translateY(calc(100% - 46vh));
+  }
+
+  .bottom-sheet.state-full {
+    transform: translateY(calc(100% - 85vh));
+  }
+
+  .sheet-handle {
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+  }
+
+  .handle-bar {
+    width: 40px;
+    height: 4px;
+    background: #cbd5e1;
+    border-radius: 2px;
+  }
+
+  .sheet-header {
+    height: 44px;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+
+  .sheet-summary {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+  }
+
+  .sheet-summary strong {
+    color: var(--accent);
+    font-size: 1.05rem;
+  }
+
+  .sheet-state-text {
+    font-size: 0.78rem;
+    color: var(--text-light);
+  }
+
+  .sheet-content {
+    height: calc(85vh - 64px);
+    overflow-y: auto;
+    padding: 12px 16px;
+  }
+
+  .mobile-store-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 20px;
+  }
+}
